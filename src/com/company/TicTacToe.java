@@ -27,14 +27,35 @@ public class TicTacToe {
             Scanner scan = new Scanner(System.in);
             System.out.println("Enter your placement (1-9):");
             int playerPos = scan.nextInt();
+            while(playerPositions.contains(playerPos) || cpuPositions.contains(playerPos)){
+                System.out.println("Position taken. Try again!");
+                playerPos =  scan.nextInt();
+            }
+
             placePiece(gameBoard, playerPos, "player");
-            printGameBoard(gameBoard);
+
+            String result = checkWinner();
+            if(result.length()>0){
+                System.out.println(result);
+                break;
+            }
+
             Random rand = new Random();
             int cpuPos = rand.nextInt(9) + 1;
+            while(playerPositions.contains(cpuPos) || cpuPositions.contains(cpuPos)){
+                System.out.println("");
+                cpuPos = rand.nextInt(9)+1;
+            }
             placePiece(gameBoard, cpuPos, "cpu");
             printGameBoard(gameBoard);
 
-            checkWinner();
+            result = checkWinner();
+            if(result.length()>0){
+                System.out.println(result);
+                break;
+            }
+
+            System.out.println(result);
 
         }
 
