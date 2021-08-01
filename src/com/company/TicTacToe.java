@@ -1,16 +1,15 @@
 package com.company;
 
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class TicTacToe {
 
     public static void main(String[] args) {
 	// write your code here
-        
+
+        static ArrayList<Integer> playerPositions = new ArrayList<Integer>();
+        static ArrayList<Integer> cpuPositions = new ArrayList<Integer>();
 
         char[][] gameBoard = {{' ','|',' ', '|', ' '},
                 {'-','+','-', '+', '-'},
@@ -32,6 +31,8 @@ public class TicTacToe {
             int cpuPos = rand.nextInt(9) + 1;
             placePiece(gameBoard, cpuPos, "cpu");
             printGameBoard(gameBoard);
+
+            checkWinner();
 
         }
 
@@ -97,6 +98,27 @@ public class TicTacToe {
         List rCol = Arrays.asList(3,6,9);
         List fDiagonal = Arrays.asList(1,5,9);
         List bDiagonal = Arrays.asList(3,5,7);
+
+        List<List> winningConditions = new ArrayList<List>();
+        winningConditions.add(tRow);
+        winningConditions.add(mRow);
+        winningConditions.add(bRow);
+        winningConditions.add(cCol);
+        winningConditions.add(lCol);
+        winningConditions.add(rCol);
+        winningConditions.add(fDiagonal);
+        winningConditions.add(bDiagonal);
+
+        for(List l: winningConditions){
+            if(playerPositions.containsAll(l)){
+            return "Yay you won!";
+        } else if(cpuPositions.containsAll(l)){
+            return "Sorry better luck next time!";
+        } else if(playerPosition.size() + cpuPositions.size() == 9){
+            return "Cat won!";
+        }
+
+
 
         return "";
     }
