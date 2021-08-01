@@ -1,17 +1,12 @@
 package com.company;
 
-
 import java.util.*;
 
 public class TicTacToe {
     static ArrayList<Integer> playerPositions = new ArrayList<Integer>();
     static ArrayList<Integer> cpuPositions = new ArrayList<Integer>();
 
-
     public static void main(String[] args) {
-	// write your code here
-
-
 
         char[][] gameBoard = {{' ','|',' ', '|', ' '},
                 {'-','+','-', '+', '-'},
@@ -20,8 +15,6 @@ public class TicTacToe {
                 {' ','|',' ', '|', ' '}};
 
         printGameBoard(gameBoard);
-
-
 
         while(true){
             Scanner scan = new Scanner(System.in);
@@ -33,8 +26,8 @@ public class TicTacToe {
             }
 
             placePiece(gameBoard, playerPos, "player");
-
             String result = checkWinner();
+
             if(result.length()>0){
                 System.out.println(result);
                 break;
@@ -42,24 +35,23 @@ public class TicTacToe {
 
             Random rand = new Random();
             int cpuPos = rand.nextInt(9) + 1;
+
             while(playerPositions.contains(cpuPos) || cpuPositions.contains(cpuPos)){
                 System.out.println("");
                 cpuPos = rand.nextInt(9)+1;
             }
+
             placePiece(gameBoard, cpuPos, "cpu");
             printGameBoard(gameBoard);
-
             result = checkWinner();
+
             if(result.length()>0){
                 System.out.println(result);
                 break;
             }
 
             System.out.println(result);
-
         }
-
-
     }
 
     public static void printGameBoard(char[][] gameBoard) {
@@ -110,11 +102,9 @@ public class TicTacToe {
                 gameBoard[4][4] = symbol;
                 break;
         }
-
     }
 
     public static String checkWinner() {
-
         List tRow = Arrays.asList(1, 2, 3);
         List mRow = Arrays.asList(4, 5, 6);
         List bRow = Arrays.asList(7, 8, 9);
