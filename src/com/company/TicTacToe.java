@@ -1,6 +1,8 @@
 package com.company;
 
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -8,6 +10,8 @@ public class TicTacToe {
 
     public static void main(String[] args) {
 	// write your code here
+        
+
         char[][] gameBoard = {{' ','|',' ', '|', ' '},
                 {'-','+','-', '+', '-'},
                 {' ','|',' ', '|', ' '},
@@ -16,20 +20,22 @@ public class TicTacToe {
 
         printGameBoard(gameBoard);
 
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Enter your placement (1-9):");
-        int pos = scan.nextInt();
 
 
+        while(true){
+            Scanner scan = new Scanner(System.in);
+            System.out.println("Enter your placement (1-9):");
+            int playerPos = scan.nextInt();
+            placePiece(gameBoard, playerPos, "player");
+            printGameBoard(gameBoard);
+            Random rand = new Random();
+            int cpuPos = rand.nextInt(9) + 1;
+            placePiece(gameBoard, cpuPos, "cpu");
+            printGameBoard(gameBoard);
+
+        }
 
 
-
-        placePiece(gameBoard, pos, "player");
-        printGameBoard(gameBoard);
-        Random rand = new Random();
-        int cpuPos = rand.nextInt(9) + 1;
-        placePiece(gameBoard, cpuPos, "cpu");
-        printGameBoard(gameBoard);
     }
 
     public static void printGameBoard(char[][] gameBoard) {
@@ -80,4 +86,24 @@ public class TicTacToe {
         }
 
     }
+
+    public static String checkWinner(){
+
+        List tRow = Arrays.asList(1,2,3);
+        List mRow = Arrays.asList(4,5,6);
+        List bRow = Arrays.asList(7,8,9);
+        List lCol = Arrays.asList(1,4,7);
+        List cCol = Arrays.asList(2,5,8);
+        List rCol = Arrays.asList(3,6,9);
+        List fDiagonal = Arrays.asList(1,5,9);
+        List bDiagonal = Arrays.asList(3,5,7);
+
+        return "";
+    }
+
+
 }
+
+
+
+
